@@ -1,0 +1,40 @@
+server:
+  port: 9160
+  servlet:
+    context-path: /test
+    #忘记密码访问中心服务器时的“当前服务器传输协议”
+    protocol: https://
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 10000
+    max-connections: 20000
+    connection-timeout: PT15M
+sifar:
+  nacos:
+    port: 8848
+
+spring:
+  application:
+    name: sifar-test
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS-HOST:wuyuan-nacos}:${sifar.nacos.port}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        shared-dataids: sifar-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+#    alibaba:
+#      seata:
+#        tx-service-group: sifar-cs-user-seata-service-group
+  profiles:
+    active: dev
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: newProducer
+    group2: newProducer2
+    topic: newTopic
+  neety:
+    host: "127.0.0.1"
+    port: 9161

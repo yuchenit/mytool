@@ -1,4 +1,4 @@
-package com.camojojo.center.common.iot;
+package com.yc.mytool.component.iot;
 
 import java.util.HashMap;
 import java.util.Map;

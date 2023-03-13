@@ -1,4 +1,4 @@
-package com.camojojo.center.common.iot;
+package com.yc.mytool.component.iot;
 /*
  * Copyright 2017 Alibaba Group
  *
@@ -14,6 +14,7 @@ package com.camojojo.center.common.iot;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 import com.alibaba.cloudapi.sdk.annotation.ThreadSafe;
 import com.alibaba.cloudapi.sdk.client.ApacheHttpClient;

@@ -1,8 +1,8 @@
-package com.camojojo.center.common.iot;
+package com.yc.mytool.component.iot;
+
 
 import com.alibaba.cloudapi.sdk.client.ApacheHttpClient;
 import com.alibaba.cloudapi.sdk.enums.HttpMethod;
-import com.alibaba.cloudapi.sdk.enums.Scheme;
 import com.alibaba.cloudapi.sdk.model.ApiRequest;
 import com.alibaba.cloudapi.sdk.model.ApiResponse;
 
@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 import static com.alibaba.cloudapi.sdk.enums.HttpConnectionModel.MULTIPLE_CONNECTION;
+import static com.alibaba.cloudapi.sdk.enums.Scheme.HTTP;
+import static com.alibaba.cloudapi.sdk.enums.Scheme.HTTPS;
 
 /**
  * @author zhenzhao.czz
@@ -26,7 +28,7 @@ public class SyncApiGetClient extends ApacheHttpClient {
 
         ApiRequest apiRequest = new ApiRequest(HttpMethod.GET, path);
         apiRequest.setHttpConnectionMode(MULTIPLE_CONNECTION);
-        apiRequest.setScheme(isHttps ? Scheme.HTTPS : Scheme.HTTP);
+        apiRequest.setScheme(isHttps ? HTTPS : HTTP);
         apiRequest.setHost(host);
         if (null != headers && headers.size() > 0) {
             for (Map.Entry<String, String> header : headers.entrySet()) {

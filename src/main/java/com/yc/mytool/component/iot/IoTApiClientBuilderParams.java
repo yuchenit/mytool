@@ -1,4 +1,4 @@
-package com.camojojo.center.common.iot;
+package com.yc.mytool.component.iot;
 
 import com.alibaba.cloudapi.sdk.model.HttpClientBuilderParams;
 

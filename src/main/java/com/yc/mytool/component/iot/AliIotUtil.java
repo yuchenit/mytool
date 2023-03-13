@@ -18,15 +18,23 @@ package com.camojojo.center.common.iot;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONStrFormater;
+import com.alibaba.cloudapi.sdk.model.ApiResponse;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.yc.mytool.common.pojo.CacheConstants;
 import com.yc.mytool.common.utils.RedisService;
-import io.swagger.annotations.ApiResponse;
+import com.yc.mytool.component.iot.IoTApiClientBuilderParams;
+import com.yc.mytool.component.iot.IoTApiRequest;
+import com.yc.mytool.component.iot.SyncApiClient;
+import com.yc.mytool.component.iot.SyncApiGetClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * author yuchen
@@ -71,7 +79,7 @@ public class AliIotUtil {
             return "";
         }
         String path = "/living/cloud/user/binding/device/batch/bind";
-        com.camojojo.center.common.iot.IoTApiRequest request = new com.camojojo.center.common.iot.IoTApiRequest();
+        IoTApiRequest request = new IoTApiRequest();
         //设置api的版本
         request.setApiVer("1.0.1");
         //如果需要登陆，设置当前的会话的token
@@ -112,7 +120,7 @@ public class AliIotUtil {
         }
         //请求参数域名、path、request
         String path = "/living/cloud/user/region/get";
-        com.camojojo.center.common.iot.IoTApiRequest request = new com.camojojo.center.common.iot.IoTApiRequest();
+        IoTApiRequest request = new IoTApiRequest();
         //设置api的版本
         request.setApiVer("1.0.1");
         request.setCloudToken(cloudToken);
@@ -166,7 +174,7 @@ public class AliIotUtil {
             return "";
         }
         String path = "/living/account/region/get";
-        com.camojojo.center.common.iot.IoTApiRequest request = new com.camojojo.center.common.iot.IoTApiRequest();
+        IoTApiRequest request = new IoTApiRequest();
         request.setApiVer("1.0.2");
         request.putParam("type", "THIRD_AUTHCODE");
         request.putParam("authCode", openId);
@@ -193,7 +201,7 @@ public class AliIotUtil {
         String cloudToken="";
         String path = "/cloud/token";
         try {
-            com.camojojo.center.common.iot.IoTApiRequest request = new com.camojojo.center.common.iot.IoTApiRequest();
+            IoTApiRequest request = new IoTApiRequest();
             //设置api的版本
             request.setApiVer("1.0.1");
             request.putParam("grantType", "project");
@@ -210,13 +218,13 @@ public class AliIotUtil {
         return cloudToken;
     }
 
-    public static JSONObject iotApiPost(String host, String path, com.camojojo.center.common.iot.IoTApiRequest request) {
+    public static JSONObject iotApiPost(String host, String path, IoTApiRequest request) {
         log.info("iotApiPost={},path={},params={}",host,path, JSONStrFormater.format(JSONObject.toJSONString(request)));
         try {
-            com.camojojo.center.common.iot.IoTApiClientBuilderParams builderParams = new com.camojojo.center.common.iot.IoTApiClientBuilderParams();
+            IoTApiClientBuilderParams builderParams = new IoTApiClientBuilderParams();
             builderParams.setAppKey(APP_KEY);
             builderParams.setAppSecret(APP_SECRET);
-            com.camojojo.center.common.iot.SyncApiClient syncClient = new com.camojojo.center.common.iot.SyncApiClient(builderParams);
+            SyncApiClient syncClient = new SyncApiClient(builderParams);
             ApiResponse response = syncClient.postBody(host, path, request,true);
             String content = new String(response.getBody(), UTF_8);
             log.info("ResponseContent = {}",content);
@@ -228,13 +236,13 @@ public class AliIotUtil {
         return new JSONObject();
     }
 
-    public static JSONObject iotAppPost(String host, String path, com.camojojo.center.common.iot.IoTApiRequest request) {
+    public static JSONObject iotAppPost(String host, String path, IoTApiRequest request) {
         log.info("iotApiPost={},path={},params={}",host,path,JSONStrFormater.format(JSONObject.toJSONString(request)));
         try {
-            com.camojojo.center.common.iot.IoTApiClientBuilderParams builderParams = new com.camojojo.center.common.iot.IoTApiClientBuilderParams();
+            IoTApiClientBuilderParams builderParams = new IoTApiClientBuilderParams();
             builderParams.setAppKey(OPEN_ID_APP_KEY);
             builderParams.setAppSecret(OPEN_ID_APP_SECRET);
-            com.camojojo.center.common.iot.SyncApiClient syncClient = new com.camojojo.center.common.iot.SyncApiClient(builderParams);
+            SyncApiClient syncClient = new SyncApiClient(builderParams);
             ApiResponse response = syncClient.postBody(host, path, request,true);
             String content = new String(response.getBody(), UTF_8);
             log.info("ResponseContent = {}",content);
@@ -246,13 +254,13 @@ public class AliIotUtil {
         return new JSONObject();
     }
 
-    public static JSONObject iotApiGet(String host,String path,Map<String, String> headers,Map<String, String> querys) {
+    public static JSONObject iotApiGet(String host, String path, Map<String, String> headers, Map<String, String> querys) {
         log.info("iotApiGet={},path={},params={}",host,path,JSONStrFormater.format(JSONObject.toJSONString(querys)));
         try {
-            com.camojojo.center.common.iot.IoTApiClientBuilderParams builderParams = new com.camojojo.center.common.iot.IoTApiClientBuilderParams();
+            IoTApiClientBuilderParams builderParams = new IoTApiClientBuilderParams();
             builderParams.setAppKey(APP_KEY);
             builderParams.setAppSecret(APP_SECRET);
-            com.camojojo.center.common.iot.SyncApiGetClient syncClient = new com.camojojo.center.common.iot.SyncApiGetClient(builderParams);
+            SyncApiGetClient syncClient = new SyncApiGetClient(builderParams);
             ApiResponse response = syncClient.doGet(host, path, true, headers, querys);
             String content = new String(response.getBody(), UTF_8);
             log.info("ResponseContent = {}",content);
@@ -269,7 +277,7 @@ public class AliIotUtil {
 //        String host = CN_SHANGHAI;
         //请求参数域名、path、request
         String path = "/living/account/region/get";
-        com.camojojo.center.common.iot.IoTApiRequest request = new com.camojojo.center.common.iot.IoTApiRequest();
+        IoTApiRequest request = new IoTApiRequest();
         //设置api的版本
         request.setApiVer("1.0.2");
         //如果需要登陆，设置当前的会话的token

@@ -10,8 +10,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.sifar</groupId>
-    <artifactId>sifar-test</artifactId>
+    <groupId>com.yc</groupId>
+    <artifactId>mytool</artifactId>
     <version>1.0.0</version>
     <properties>
         <java.version>1.8</java.version>
@@ -128,6 +128,12 @@
             <version>4.6.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.aliyun.api.gateway</groupId>
+            <artifactId>sdk-core-java</artifactId>
+            <version>1.1.9</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -138,7 +144,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.demo.test.DemoTestApplication</mainClass>
+                    <mainClass>com.yc.mytool.MytoolApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

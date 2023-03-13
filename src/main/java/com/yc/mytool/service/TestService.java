@@ -1,4 +1,4 @@
-package com.demo.test.service;
+package com.yc.mytool.service;
 
 public interface TestService {
 

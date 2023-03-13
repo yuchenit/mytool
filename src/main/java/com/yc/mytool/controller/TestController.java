@@ -1,6 +1,6 @@
-package com.demo.test.controller;
+package com.yc.mytool.controller;
 
-import com.demo.test.service.TestService;
+import com.yc.mytool.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;

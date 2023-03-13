@@ -1,6 +1,6 @@
-package com.demo.test.service.impl;
+package com.yc.mytool.service.impl;
 
-import com.demo.test.service.TestService;
+import com.yc.mytool.service.TestService;
 import org.springframework.stereotype.Service;
 
 

@@ -1,4 +1,4 @@
-package com.demo.test;
+package com.yc.mytool;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -8,11 +8,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @MapperScan(basePackages = "com.sifar.test.dao")
 @EnableSwagger2
-public class DemoTestApplication {
+public class MytoolApplication {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoTestApplication.class, args);
+        SpringApplication.run(MytoolApplication.class, args);
     }
 
 }

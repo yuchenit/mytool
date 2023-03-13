@@ -273,7 +273,7 @@ public class AliIotUtil {
     }
 
     public static void main(String[] args) {
-        String host =CN_SHANGHAI;
+        String host ="";
 //        String host = CN_SHANGHAI;
         //请求参数域名、path、request
         String path = "/living/account/region/get";
